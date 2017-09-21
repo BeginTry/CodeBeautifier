@@ -17,6 +17,7 @@
 */
 
 using System;
+using System.Configuration;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -58,6 +59,11 @@ namespace CodeBeautifier
                 StringBuilder sb = new StringBuilder();
                 SelectedRichText lastSelection = new SelectedRichText(null, Color.Empty, Color.Empty);
 
+                if(ckRootNode.Checked)
+                {
+                    sb.AppendLine("<" + txtRootName.Text + " " + txtNodeAttributes.Text + ">");
+                }
+
                 rtCode.Select(0, 1);
                 AppendOpeningSpanTag(lastSelection, sb);
 
@@ -85,16 +91,26 @@ namespace CodeBeautifier
                         lastSelection.ForeColor = rtCode.SelectionColor;
                     }
 
-                    sb.Append(rtCode.SelectedText);
+                    if (c == '<')
+                        sb.Append("&lt;");
+                    else if (c == '>')
+                        sb.Append("&gt;");
+                    else
+                        sb.Append(rtCode.SelectedText);
                 }
 
                 sb.Append("</span>");
+
+                if (ckRootNode.Checked)
+                {
+                    sb.Append(Environment.NewLine + "</" + txtRootName.Text + ">");
+                }
 
                 txtCode.Text = sb.ToString();
                 txtCode.SelectAll();
                 Clipboard.SetText(txtCode.Text);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -156,14 +172,14 @@ namespace CodeBeautifier
         private bool FormValidated()
         {
             bool retVal = true;
-            
+
             if (!(ckBackColor.Checked | ckColor.Checked | ckFontBold.Checked | ckFontName.Checked))
             {
                 retVal = false;
                 tabControl1.SelectTab(2);   //options tab
-                MessageBox.Show("At least one format option must be chosen.", 
-                    "Format Options", 
-                    MessageBoxButtons.OK, 
+                MessageBox.Show("At least one format option must be chosen.",
+                    "Format Options",
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
             else if (string.IsNullOrEmpty(rtCode.Text))
@@ -175,8 +191,112 @@ namespace CodeBeautifier
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
-            
+
             return retVal;
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Dispose();
+                Application.Exit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (About a = new CodeBeautifier.About())
+                {
+                    a.ShowDialog(this);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ckRootNode_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lblRootName.Enabled = ckRootNode.Checked;
+                txtRootName.Enabled = ckRootNode.Checked;
+                lblNodeAttributes.Enabled = ckRootNode.Checked;
+                txtNodeAttributes.Enabled = ckRootNode.Checked;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadAppConfigItems();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadAppConfigItems()
+        {
+            #region HTML format options
+            try
+            {
+                ckColor.Checked = Convert.ToBoolean(ConfigurationManager.AppSettings["Color"]);
+            }
+            catch { }
+
+            try
+            {
+                ckBackColor.Checked = Convert.ToBoolean(ConfigurationManager.AppSettings["BackColor"]);
+            }
+            catch { }
+
+            try
+            {
+                ckFontName.Checked = Convert.ToBoolean(ConfigurationManager.AppSettings["FontName"]);
+            }
+            catch { }
+
+            try
+            {
+                ckFontBold.Checked = Convert.ToBoolean(ConfigurationManager.AppSettings["FontBold"]);
+            }
+            catch { }
+            #endregion
+
+            #region Root node options
+            try
+            {
+                ckRootNode.Checked = Convert.ToBoolean(ConfigurationManager.AppSettings["EncloseHtmlInRootNode"]);
+            }
+            catch { }
+
+            try
+            {
+                txtRootName.Text = Convert.ToString(ConfigurationManager.AppSettings["RootNodeName"]);
+            }
+            catch { }
+
+            try
+            {
+                txtNodeAttributes.Text = Convert.ToString(ConfigurationManager.AppSettings["NodeAttributes"]);
+            }
+            catch { }
+            #endregion
         }
     }
 }

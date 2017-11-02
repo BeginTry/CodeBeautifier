@@ -59,10 +59,10 @@ namespace CodeBeautifier
                 StringBuilder sb = new StringBuilder();
                 SelectedRichText lastSelection = new SelectedRichText(null, Color.Empty, Color.Empty);
 
-                if(ckRootNode.Checked)
-                {
-                    sb.AppendLine("<" + txtRootName.Text + " " + txtNodeAttributes.Text + ">");
-                }
+                //if(ckRootNode.Checked)
+                //{
+                //    sb.AppendLine("<" + txtRootName.Text + " " + txtNodeAttributes.Text + ">");
+                //}
 
                 rtCode.Select(0, 1);
                 AppendOpeningSpanTag(lastSelection, sb);
@@ -101,8 +101,15 @@ namespace CodeBeautifier
 
                 sb.Append("</span>");
 
+                if (ckLineNumbers.Checked)
+                {
+                    AddLineNumbers(ref sb);
+                }
+
                 if (ckRootNode.Checked)
                 {
+                    sb.Insert(0, "<" + txtRootName.Text + " " + txtNodeAttributes.Text + ">" + 
+                        Environment.NewLine);
                     sb.Append(Environment.NewLine + "</" + txtRootName.Text + ">");
                 }
 
@@ -113,6 +120,102 @@ namespace CodeBeautifier
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Adds line numbers to an input StringBuilder.
+        /// </summary>
+        /// <param name="sb">A StringBuilder of HTML code (passed by ref).</param>
+        private void AddLineNumbers(ref StringBuilder sb)
+        {
+            //Create a string array of lines from the input StringBuilder.
+            string[] lines = sb.ToString().Split(Environment.NewLine.ToCharArray());
+            sb = new StringBuilder();
+
+            #region Build css/style ver 1
+            //sb.AppendLine("<style>");
+            //sb.AppendLine(".cbln {".PadLeft(4));
+            //sb.AppendLine("color: " + txtLineNumberColor.Text + ";".PadLeft(8));
+            //sb.AppendLine("margin-right: 1.5em;".PadLeft(8));
+
+            //if (!ckLineNumbersHighlightable.Checked)
+            //{
+            //    sb.AppendLine("-webkit-touch-callout: none;".PadLeft(8));
+            //    sb.AppendLine("-webkit-user-select: none;".PadLeft(8));
+            //    sb.AppendLine("-khtml-user-select: none;".PadLeft(8));
+            //    sb.AppendLine("-moz-user-select: none;".PadLeft(8));
+            //    sb.AppendLine("-ms-user-select: none;".PadLeft(8));
+            //    sb.AppendLine("user-select: none;".PadLeft(8));
+            //}
+
+            //sb.AppendLine("}".PadLeft(4));
+            //sb.AppendLine("</style>");
+            #endregion
+
+            #region Build css/style ver 2
+            //sb.AppendLine("<style>");
+            //sb.AppendLine("[data-text]".PadLeft(4));
+            //sb.AppendLine("{".PadLeft(4));
+            //sb.AppendLine("color: " + txtLineNumberColor.Text + ";".PadLeft(8));
+            //sb.AppendLine("margin-right: 1.5em;".PadLeft(8));
+            //sb.AppendLine("}".PadLeft(4));
+
+            //if (!ckLineNumbersHighlightable.Checked)
+            //{
+            //    sb.AppendLine("[data-text]::after".PadLeft(4));
+            //    sb.AppendLine("{".PadLeft(4));
+            //    sb.AppendLine("content: attr(data-text);".PadLeft(8));
+            //    sb.AppendLine("}".PadLeft(4));
+            //}
+
+            //sb.AppendLine("</style>");
+            #endregion
+
+            #region Build css/style ver 3
+            sb.AppendLine("<style>");
+            
+            if (ckLineNumbersHighlightable.Checked)
+            {
+                sb.AppendLine(".cbln {".PadLeft(4));
+                sb.AppendLine("color: " + txtLineNumberColor.Text + ";".PadLeft(8));
+                sb.AppendLine("margin-right: 1.5em;".PadLeft(8));
+                sb.AppendLine("}".PadLeft(4));
+            }
+            else
+            {
+                sb.AppendLine("[data-text]".PadLeft(4));
+                sb.AppendLine("{".PadLeft(4));
+                sb.AppendLine("color: " + txtLineNumberColor.Text + ";".PadLeft(8));
+                sb.AppendLine("margin-right: 1.5em;".PadLeft(8));
+                sb.AppendLine("}".PadLeft(4));
+
+                sb.AppendLine("[data-text]::after".PadLeft(4));
+                sb.AppendLine("{".PadLeft(4));
+                sb.AppendLine("content: attr(data-text);".PadLeft(8));
+                sb.AppendLine("}".PadLeft(4));
+            }
+            
+            sb.AppendLine("</style>");
+            #endregion
+
+            int numDigits = lines.Length.ToString().Length;
+
+            //Iterate through the lines and prepend a line number to each one within a <span>.
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string sLineNum = ((i + 1).ToString()).PadLeft(numDigits);
+
+                if (ckLineNumbersHighlightable.Checked)
+                {
+                    //Ver 2
+                    sb.AppendLine("<span class=\"cbln\">" + sLineNum + "</span>" + lines[i]);
+                }
+                else
+                {
+                    //Ver 2
+                    sb.AppendLine("<span data-text=\"" + sLineNum + "\"></span>" + lines[i]);
+                }
             }
         }
 
@@ -297,6 +400,40 @@ namespace CodeBeautifier
             }
             catch { }
             #endregion
+
+            #region Line number options
+            try
+            {
+                ckLineNumbers.Checked = Convert.ToBoolean(ConfigurationManager.AppSettings["AddLineNumbers"]);
+            }
+            catch { }
+
+            try
+            {
+                ckLineNumbersHighlightable.Checked = Convert.ToBoolean(ConfigurationManager.AppSettings["LineNumbersHighlightable"]);
+            }
+            catch { }
+
+            try
+            {
+                txtLineNumberColor.Text = Convert.ToString(ConfigurationManager.AppSettings["HtmlColor"]);
+            }
+            catch { }
+            #endregion
+        }
+
+        private void ckLineNumbers_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ckLineNumbersHighlightable.Enabled = ckLineNumbers.Checked;
+                lblLineNumberColor.Enabled = ckLineNumbers.Checked;
+                txtLineNumberColor.Enabled = ckLineNumbers.Checked;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.rtCode = new System.Windows.Forms.RichTextBox();
             this.txtCode = new System.Windows.Forms.TextBox();
             this.btnBeautify = new System.Windows.Forms.Button();
@@ -35,29 +36,36 @@
             this.tabRichText = new System.Windows.Forms.TabPage();
             this.tabHtml = new System.Windows.Forms.TabPage();
             this.tabOpts = new System.Windows.Forms.TabPage();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtNodeAttributes = new System.Windows.Forms.TextBox();
+            this.lblNodeAttributes = new System.Windows.Forms.Label();
+            this.txtRootName = new System.Windows.Forms.TextBox();
+            this.lblRootName = new System.Windows.Forms.Label();
+            this.ckRootNode = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ckFontBold = new System.Windows.Forms.CheckBox();
             this.ckBackColor = new System.Windows.Forms.CheckBox();
             this.ckColor = new System.Windows.Forms.CheckBox();
             this.ckFontName = new System.Windows.Forms.CheckBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.ckRootNode = new System.Windows.Forms.CheckBox();
-            this.lblRootName = new System.Windows.Forms.Label();
-            this.txtRootName = new System.Windows.Forms.TextBox();
-            this.txtNodeAttributes = new System.Windows.Forms.TextBox();
-            this.lblNodeAttributes = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtLineNumberColor = new System.Windows.Forms.TextBox();
+            this.lblLineNumberColor = new System.Windows.Forms.Label();
+            this.ckLineNumbers = new System.Windows.Forms.CheckBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.ckLineNumbersHighlightable = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabRichText.SuspendLayout();
             this.tabHtml.SuspendLayout();
             this.tabOpts.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // rtCode
@@ -129,6 +137,7 @@
             // 
             // tabOpts
             // 
+            this.tabOpts.Controls.Add(this.groupBox3);
             this.tabOpts.Controls.Add(this.groupBox2);
             this.tabOpts.Controls.Add(this.groupBox1);
             this.tabOpts.Location = new System.Drawing.Point(4, 22);
@@ -138,46 +147,72 @@
             this.tabOpts.Text = "Options";
             this.tabOpts.UseVisualStyleBackColor = true;
             // 
-            // menuStrip1
+            // groupBox2
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(584, 24);
-            this.menuStrip1.TabIndex = 5;
-            this.menuStrip1.Text = "menuStrip1";
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.txtNodeAttributes);
+            this.groupBox2.Controls.Add(this.lblNodeAttributes);
+            this.groupBox2.Controls.Add(this.txtRootName);
+            this.groupBox2.Controls.Add(this.lblRootName);
+            this.groupBox2.Controls.Add(this.ckRootNode);
+            this.groupBox2.Location = new System.Drawing.Point(188, 14);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(344, 153);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Root Node Options";
             // 
-            // fileToolStripMenuItem
+            // txtNodeAttributes
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "&File";
+            this.txtNodeAttributes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNodeAttributes.Enabled = false;
+            this.txtNodeAttributes.Location = new System.Drawing.Point(113, 72);
+            this.txtNodeAttributes.Name = "txtNodeAttributes";
+            this.txtNodeAttributes.Size = new System.Drawing.Size(225, 20);
+            this.txtNodeAttributes.TabIndex = 10;
             // 
-            // exitToolStripMenuItem
+            // lblNodeAttributes
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.exitToolStripMenuItem.Text = "E&xit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.lblNodeAttributes.AutoSize = true;
+            this.lblNodeAttributes.Enabled = false;
+            this.lblNodeAttributes.Location = new System.Drawing.Point(14, 76);
+            this.lblNodeAttributes.Name = "lblNodeAttributes";
+            this.lblNodeAttributes.Size = new System.Drawing.Size(83, 13);
+            this.lblNodeAttributes.TabIndex = 9;
+            this.lblNodeAttributes.Text = "Node Attributes:";
             // 
-            // helpToolStripMenuItem
+            // txtRootName
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "&Help";
+            this.txtRootName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRootName.Enabled = false;
+            this.txtRootName.Location = new System.Drawing.Point(113, 49);
+            this.txtRootName.Name = "txtRootName";
+            this.txtRootName.Size = new System.Drawing.Size(225, 20);
+            this.txtRootName.TabIndex = 8;
             // 
-            // aboutToolStripMenuItem
+            // lblRootName
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.aboutToolStripMenuItem.Text = "&About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            this.lblRootName.AutoSize = true;
+            this.lblRootName.Enabled = false;
+            this.lblRootName.Location = new System.Drawing.Point(14, 53);
+            this.lblRootName.Name = "lblRootName";
+            this.lblRootName.Size = new System.Drawing.Size(93, 13);
+            this.lblRootName.TabIndex = 7;
+            this.lblRootName.Text = "Root Node Name:";
+            // 
+            // ckRootNode
+            // 
+            this.ckRootNode.AutoSize = true;
+            this.ckRootNode.Location = new System.Drawing.Point(17, 26);
+            this.ckRootNode.Name = "ckRootNode";
+            this.ckRootNode.Size = new System.Drawing.Size(161, 17);
+            this.ckRootNode.TabIndex = 6;
+            this.ckRootNode.Text = "Enclose HTML in Root node";
+            this.ckRootNode.UseVisualStyleBackColor = true;
+            this.ckRootNode.CheckedChanged += new System.EventHandler(this.ckRootNode_CheckedChanged);
             // 
             // groupBox1
             // 
@@ -232,72 +267,103 @@
             this.ckFontName.Text = "Font Name";
             this.ckFontName.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // menuStrip1
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(584, 24);
+            this.menuStrip1.TabIndex = 5;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "&File";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+            this.exitToolStripMenuItem.Text = "E&xit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "&Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Text = "&About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.txtNodeAttributes);
-            this.groupBox2.Controls.Add(this.lblNodeAttributes);
-            this.groupBox2.Controls.Add(this.txtRootName);
-            this.groupBox2.Controls.Add(this.lblRootName);
-            this.groupBox2.Controls.Add(this.ckRootNode);
-            this.groupBox2.Location = new System.Drawing.Point(188, 14);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(344, 153);
-            this.groupBox2.TabIndex = 7;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Root Node Options";
+            this.groupBox3.Controls.Add(this.ckLineNumbersHighlightable);
+            this.groupBox3.Controls.Add(this.txtLineNumberColor);
+            this.groupBox3.Controls.Add(this.lblLineNumberColor);
+            this.groupBox3.Controls.Add(this.ckLineNumbers);
+            this.groupBox3.Location = new System.Drawing.Point(19, 173);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(141, 127);
+            this.groupBox3.TabIndex = 11;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Line Numbers";
             // 
-            // ckRootNode
+            // txtLineNumberColor
             // 
-            this.ckRootNode.AutoSize = true;
-            this.ckRootNode.Location = new System.Drawing.Point(17, 26);
-            this.ckRootNode.Name = "ckRootNode";
-            this.ckRootNode.Size = new System.Drawing.Size(161, 17);
-            this.ckRootNode.TabIndex = 6;
-            this.ckRootNode.Text = "Enclose HTML in Root node";
-            this.ckRootNode.UseVisualStyleBackColor = true;
-            this.ckRootNode.CheckedChanged += new System.EventHandler(this.ckRootNode_CheckedChanged);
+            this.txtLineNumberColor.Enabled = false;
+            this.txtLineNumberColor.Location = new System.Drawing.Point(14, 93);
+            this.txtLineNumberColor.Name = "txtLineNumberColor";
+            this.txtLineNumberColor.Size = new System.Drawing.Size(100, 20);
+            this.txtLineNumberColor.TabIndex = 8;
+            this.toolTip1.SetToolTip(this.txtLineNumberColor, "Named color or #Hex value.");
             // 
-            // lblRootName
+            // lblLineNumberColor
             // 
-            this.lblRootName.AutoSize = true;
-            this.lblRootName.Enabled = false;
-            this.lblRootName.Location = new System.Drawing.Point(14, 53);
-            this.lblRootName.Name = "lblRootName";
-            this.lblRootName.Size = new System.Drawing.Size(93, 13);
-            this.lblRootName.TabIndex = 7;
-            this.lblRootName.Text = "Root Node Name:";
+            this.lblLineNumberColor.AutoSize = true;
+            this.lblLineNumberColor.Enabled = false;
+            this.lblLineNumberColor.Location = new System.Drawing.Point(14, 77);
+            this.lblLineNumberColor.Name = "lblLineNumberColor";
+            this.lblLineNumberColor.Size = new System.Drawing.Size(67, 13);
+            this.lblLineNumberColor.TabIndex = 7;
+            this.lblLineNumberColor.Text = "HTML Color:";
+            this.toolTip1.SetToolTip(this.lblLineNumberColor, "#Hex or Named color");
             // 
-            // txtRootName
+            // ckLineNumbers
             // 
-            this.txtRootName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRootName.Enabled = false;
-            this.txtRootName.Location = new System.Drawing.Point(113, 49);
-            this.txtRootName.Name = "txtRootName";
-            this.txtRootName.Size = new System.Drawing.Size(225, 20);
-            this.txtRootName.TabIndex = 8;
+            this.ckLineNumbers.AutoSize = true;
+            this.ckLineNumbers.Location = new System.Drawing.Point(17, 26);
+            this.ckLineNumbers.Name = "ckLineNumbers";
+            this.ckLineNumbers.Size = new System.Drawing.Size(113, 17);
+            this.ckLineNumbers.TabIndex = 6;
+            this.ckLineNumbers.Text = "Add Line Numbers";
+            this.ckLineNumbers.UseVisualStyleBackColor = true;
+            this.ckLineNumbers.CheckedChanged += new System.EventHandler(this.ckLineNumbers_CheckedChanged);
             // 
-            // txtNodeAttributes
+            // ckLineNumbersHighlightable
             // 
-            this.txtNodeAttributes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNodeAttributes.Enabled = false;
-            this.txtNodeAttributes.Location = new System.Drawing.Point(113, 72);
-            this.txtNodeAttributes.Name = "txtNodeAttributes";
-            this.txtNodeAttributes.Size = new System.Drawing.Size(225, 20);
-            this.txtNodeAttributes.TabIndex = 10;
-            // 
-            // lblNodeAttributes
-            // 
-            this.lblNodeAttributes.AutoSize = true;
-            this.lblNodeAttributes.Enabled = false;
-            this.lblNodeAttributes.Location = new System.Drawing.Point(14, 76);
-            this.lblNodeAttributes.Name = "lblNodeAttributes";
-            this.lblNodeAttributes.Size = new System.Drawing.Size(83, 13);
-            this.lblNodeAttributes.TabIndex = 9;
-            this.lblNodeAttributes.Text = "Node Attributes:";
+            this.ckLineNumbersHighlightable.AutoSize = true;
+            this.ckLineNumbersHighlightable.Location = new System.Drawing.Point(17, 49);
+            this.ckLineNumbersHighlightable.Name = "ckLineNumbersHighlightable";
+            this.ckLineNumbersHighlightable.Size = new System.Drawing.Size(90, 17);
+            this.ckLineNumbersHighlightable.TabIndex = 9;
+            this.ckLineNumbersHighlightable.Text = "Highlight-able";
+            this.toolTip1.SetToolTip(this.ckLineNumbersHighlightable, "Should the line numbers be highlight-able (with a mouse) in the web browser?");
+            this.ckLineNumbersHighlightable.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -317,12 +383,14 @@
             this.tabHtml.ResumeLayout(false);
             this.tabHtml.PerformLayout();
             this.tabOpts.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,6 +421,12 @@
         private System.Windows.Forms.CheckBox ckBackColor;
         private System.Windows.Forms.CheckBox ckColor;
         private System.Windows.Forms.CheckBox ckFontName;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox txtLineNumberColor;
+        private System.Windows.Forms.Label lblLineNumberColor;
+        private System.Windows.Forms.CheckBox ckLineNumbers;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.CheckBox ckLineNumbersHighlightable;
     }
 }
 

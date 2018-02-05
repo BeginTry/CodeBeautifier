@@ -133,46 +133,7 @@ namespace CodeBeautifier
             string[] lines = sb.ToString().Split(Environment.NewLine.ToCharArray());
             sb = new StringBuilder();
 
-            #region Build css/style ver 1
-            //sb.AppendLine("<style>");
-            //sb.AppendLine(".cbln {".PadLeft(4));
-            //sb.AppendLine("color: " + txtLineNumberColor.Text + ";".PadLeft(8));
-            //sb.AppendLine("margin-right: 1.5em;".PadLeft(8));
-
-            //if (!ckLineNumbersHighlightable.Checked)
-            //{
-            //    sb.AppendLine("-webkit-touch-callout: none;".PadLeft(8));
-            //    sb.AppendLine("-webkit-user-select: none;".PadLeft(8));
-            //    sb.AppendLine("-khtml-user-select: none;".PadLeft(8));
-            //    sb.AppendLine("-moz-user-select: none;".PadLeft(8));
-            //    sb.AppendLine("-ms-user-select: none;".PadLeft(8));
-            //    sb.AppendLine("user-select: none;".PadLeft(8));
-            //}
-
-            //sb.AppendLine("}".PadLeft(4));
-            //sb.AppendLine("</style>");
-            #endregion
-
-            #region Build css/style ver 2
-            //sb.AppendLine("<style>");
-            //sb.AppendLine("[data-text]".PadLeft(4));
-            //sb.AppendLine("{".PadLeft(4));
-            //sb.AppendLine("color: " + txtLineNumberColor.Text + ";".PadLeft(8));
-            //sb.AppendLine("margin-right: 1.5em;".PadLeft(8));
-            //sb.AppendLine("}".PadLeft(4));
-
-            //if (!ckLineNumbersHighlightable.Checked)
-            //{
-            //    sb.AppendLine("[data-text]::after".PadLeft(4));
-            //    sb.AppendLine("{".PadLeft(4));
-            //    sb.AppendLine("content: attr(data-text);".PadLeft(8));
-            //    sb.AppendLine("}".PadLeft(4));
-            //}
-
-            //sb.AppendLine("</style>");
-            #endregion
-
-            #region Build css/style ver 3
+            #region Build css/style
             sb.AppendLine("<style>");
             
             if (ckLineNumbersHighlightable.Checked)
@@ -240,29 +201,35 @@ namespace CodeBeautifier
 
             if (ckFontName.Checked)
             {
-                if (lastSelection.Font == null || lastSelection.Font.Name != rtCode.SelectionFont.Name)
-                {
+                //if (lastSelection.Font == null || lastSelection.Font.Name != rtCode.SelectionFont.Name)
+                //{
                     sb.Append("font-family: '" + rtCode.SelectionFont.Name + "';");
-                }
+                //}
             }
 
-            if (ckColor.Checked && lastSelection.ForeColor != rtCode.SelectionColor)
+            if (ckColor.Checked)
             {
-                sb.Append("color: " + ColorToHex(rtCode.SelectionColor) + ";");
+                //if (lastSelection.ForeColor != rtCode.SelectionColor)
+                //{
+                    sb.Append("color: " + ColorToHex(rtCode.SelectionColor) + ";");
+                //}
             }
 
-            if (ckBackColor.Checked && lastSelection.BackColor != rtCode.SelectionBackColor)
+            if (ckBackColor.Checked)
             {
-                sb.Append("background-color: " + ColorToHex(rtCode.SelectionBackColor) + ";");
+                //if (lastSelection.BackColor != rtCode.SelectionBackColor)
+                //{
+                    sb.Append("background-color: " + ColorToHex(rtCode.SelectionBackColor) + ";");
+                //}
             }
 
             if (ckFontBold.Checked)
 
             {
-                if (lastSelection.Font == null || lastSelection.Font.Bold != rtCode.SelectionFont.Bold)
-                {
+                //if (lastSelection.Font == null || lastSelection.Font.Bold != rtCode.SelectionFont.Bold)
+                //{
                     sb.Append("font-weight: " + (rtCode.SelectionFont.Bold ? "bold" : "normal") + ";");
-                }
+                //}
             }
 
             sb.Append("\">");
